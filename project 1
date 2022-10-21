@@ -1,0 +1,60 @@
+
+# Input and return the employee's name.
+def GetEmployeeName():
+    return input("Enter empoloyee's name: ")    
+
+# Input and return total hours.
+def GetTotalHours():
+    return float(input('Enter total hours: '))
+
+# Input and return the hourly rate.
+def GetHourlyRate():
+    return float(input('Enter hourly rate: '))
+
+# Input and return the income tax rate.
+def GetTaxRate():
+    tax_rate = float(input('Enter income tax: '))
+    return tax_rate/100
+
+# Calculate and return the gross pay, income tax, and net pay—it.
+def CalculatePays(total_hours, hourly_rate, tax_rate):
+    gross_pay = total_hours * hourly_rate
+    income_tax = gross_pay * tax_rate
+    net_pay = gross_pay - income_tax
+    return gross_pay, income_tax, net_pay
+
+# Displaying employee name, total hours, hourly rate, gross pay, income tax rate, income tax, and net pay.
+def EmployeeReport(employee_name, total_hours, hourly_rate, gross_pay, income_tax_rate, income_tax, net_pay):
+    print(employee_name, f'{total_hours:,.2f}', f'{hourly_rate:,.2f}', f'{gross_pay:,.2f}', f'{income_tax_rate:,.1%}', f'{income_tax:,.2f}', f'{net_pay:,.2f}')
+
+# Displaying total number of employees, total hours, total gross pay, total tax, and total net pay.
+def TotalReport(total_employees, total_em_hours, total_gross, total_tax, total_net):
+    print()
+    print(f'Total Number Of Employees: {total_employees}')
+    print(f'Total Hours Worked: {total_em_hours:,.2f}')
+    print(f'Total Gross Pay: {total_gross:,.2f}')
+    print(f'Total Income Tax: {total_tax:,.2f}')
+    print(f'Total Net Pay: {total_net:,.2f}')
+
+# Create a loop that will get user input by calling various functions until terminated by the user typing “End.”
+total_employees = 0
+total_em_hours = 0
+total_gross = 0
+total_tax = 0
+total_net = 0
+
+while True:
+    employee_name = GetEmployeeName()
+    if employee_name == 'End' or employee_name == 'end':
+        TotalReport(total_employees, total_em_hours, total_gross, total_tax, total_net)
+        break
+    total_hours = GetTotalHours()
+    hourly_rate = GetHourlyRate()
+    income_tax_rate = GetTaxRate()
+    gross_pay, income_tax, net_pay = CalculatePays(total_hours, hourly_rate, income_tax_rate)
+    total_employees += 1
+    total_em_hours += total_hours
+    total_gross += gross_pay
+    total_tax += income_tax
+    total_net += net_pay
+    EmployeeReport(employee_name, total_hours, hourly_rate, gross_pay, income_tax_rate, income_tax, net_pay)
